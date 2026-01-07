@@ -13,3 +13,4 @@ verify: deps
 	.venv/bin/python scripts/gen_schema_index.py
 	.venv/bin/python scripts/enforce_schema_index.py
 	.venv/bin/python ./scripts/verify_schemas.py
+\n\n.PHONY: audit-issues\naudit-issues:\n\t./scripts/guard_repo_root.sh\n\t./scripts/audit_issues.py\n
