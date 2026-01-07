@@ -1,5 +1,5 @@
 import json, glob, sys, pathlib
-from datetime import datetime
+from datetime import datetime, timezone
 
 def load_json(p: str):
     return json.loads(pathlib.Path(p).read_text(encoding="utf-8"))
@@ -77,7 +77,7 @@ def main() -> int:
             print(f"  msg: {e.message}")
             return 2
 
-    print("OK: all JSON parsed, required schemas present, examples validated @", datetime.utcnow().isoformat() + "Z")
+    print("OK: all JSON parsed, required schemas present, examples validated @", datetime.now(timezone.utc).isoformat().replace("+00:00","Z"))
     return 0
 
 if __name__ == "__main__":
