@@ -1,0 +1,9 @@
+{
+  "rule": "2of3-human",
+  "validators": ["spiffe://validators/human1","spiffe://validators/human2","spiffe://validators/human3"],
+  "signed_payload_hash": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "signatures": [
+    { "kind": "human", "spiffe_id": "spiffe://validators/human1", "sig": "MEUCIQDfakefakefakefakefakefakefakefakefakefakefake" },
+    { "kind": "human", "spiffe_id": "spiffe://validators/human2", "sig": "MEUCIQDfakefakefakefakefakefakefakefakefakefakefakefake" }
+  ]
+}

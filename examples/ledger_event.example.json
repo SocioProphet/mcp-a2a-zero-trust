@@ -1,0 +1,14 @@
+{
+  "event_id": "evt_12345678",
+  "ts": "2026-01-07T00:00:01Z",
+  "type": "A2A_GRANT",
+  "actor": { "spiffe_id": "spiffe://sourceos/policyarbiter", "aum_digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222" },
+  "target": { "spiffe_id": "spiffe://sourceos/inception", "server": "fs.introspect", "tool": "hash" },
+  "payload_hash": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+  "policy_hash": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
+  "prev_hash": "sha256:5555555555555555555555555555555555555555555555555555555555555555",
+  "hash": "sha256:6666666666666666666666666666666666666666666666666666666666666666",
+  "decision": { "allow": true, "reason": "grant issued" },
+  "redaction": { "applied": false, "rules": [] },
+  "signatures": [{ "kind": "service", "spiffe_id": "spiffe://sourceos/policyarbiter", "sig": "MEUCIQDfakefakefakefakefakefakefakefakefakefakefakefake" }]
+}

@@ -1,0 +1,22 @@
+{
+  "allow": true,
+  "danger_class": "MEDIUM",
+  "policy_hash": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+  "reason": "allowlisted read tool with quorum satisfied",
+  "constraints": {
+    "ttl_sec": 900,
+    "paths_allow": ["$HOME/**"],
+    "bytes_max": 50000000,
+    "rate_per_min": 6
+  },
+  "required_quorum": 2,
+  "quorum_proof": {
+    "rule": "2of3-human",
+    "validators": ["spiffe://validators/human1","spiffe://validators/human2","spiffe://validators/human3"],
+    "signed_payload_hash": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+    "signatures": [
+      { "kind": "human", "spiffe_id": "spiffe://validators/human1", "sig": "MEUCIQDfakefakefakefakefakefakefakefakefakefakefakefake" },
+      { "kind": "human", "spiffe_id": "spiffe://validators/human2", "sig": "MEUCIQDfakefakefakefakefakefakefakefakefakefakefakefake" }
+    ]
+  }
+}

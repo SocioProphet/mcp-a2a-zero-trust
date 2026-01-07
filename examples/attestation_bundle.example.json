@@ -1,0 +1,5 @@
+{
+  "subject": { "spiffe_id": "spiffe://sourceos/inception", "aum_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" },
+  "results": { "tpm_valid": true, "cosign_valid": true, "fido2_valid": false },
+  "evidence_refs": { "tpm_quote_ref": "worm://quotes/q1", "cosign_bundle_ref": "worm://bundles/b1" }
+}

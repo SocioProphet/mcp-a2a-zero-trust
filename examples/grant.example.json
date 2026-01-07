@@ -1,0 +1,23 @@
+{
+  "grant_id": "grant_12345678",
+  "issued_at": "2026-01-07T00:00:00Z",
+  "expires_at": "2026-01-07T00:15:00Z",
+  "binding": {
+    "spiffe_id": "spiffe://sourceos/inception",
+    "aum_digest": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    "session_id": "sess_abc123"
+  },
+  "capability": { "server": "fs.introspect", "tool": "hash", "effect": "read" },
+  "constraints": { "paths_allow": ["$HOME/**"], "bytes_max": 50000000, "rate_per_min": 6 },
+  "policy_hash": "sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+  "quorum_proof": {
+    "rule": "2of3-human",
+    "validators": ["spiffe://validators/human1","spiffe://validators/human2","spiffe://validators/human3"],
+    "signed_payload_hash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+    "signatures": [
+      { "kind": "human", "spiffe_id": "spiffe://validators/human1", "sig": "MEUCIQDfakefakefakefakefakefakefakefakefakefakefakefake" },
+      { "kind": "human", "spiffe_id": "spiffe://validators/human2", "sig": "MEUCIQDfakefakefakefakefakefakefakefakefakefakefakefake" }
+    ]
+  },
+  "sig": { "issuer": "spiffe://sourceos/policyarbiter", "sig": "MEUCIQDfakefakefakefakefakefakefakefakefakefakefakefake" }
+}
