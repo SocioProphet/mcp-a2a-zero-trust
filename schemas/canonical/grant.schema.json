@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sourceos.local/schemas/canonical/grant.schema.json",
+  "title": "Grant",
+  "type": "object",
+  "required": [
+    "grant_id",
+    "issued_at",
+    "expires_at",
+    "binding",
+    "capability",
+    "constraints",
+    "policy_hash"
+  ],
+  "properties": {
+    "grant_id": {
+      "type": "string",
+      "minLength": 8
+    },
+    "issued_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "binding": {
+      "type": "object",
+      "required": [
+        "spiffe_id",
+        "aum_digest"
+      ],
+      "properties": {
+        "spiffe_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "aum_digest": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        },
+        "session_id": {
+          "type": "string",
+          "minLength": 6
+        }
+      },
+      "additionalProperties": false
+    },
+    "capability": {
+      "type": "object",
+      "required": [
+        "server",
+        "tool",
+        "effect"
+      ],
+      "properties": {
+        "server": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tool": {
+          "type": "string",
+          "minLength": 1
+        },
+        "effect": {
+          "type": "string",
+          "enum": [
+            "read",
+            "write",
+            "compute",
+            "exec",
+            "egress"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "constraints": {
+      "type": "object"
+    },
+    "policy_hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "quorum_proof": {
+      "$ref": "quorum_proof.schema.json"
+    },
+    "sig": {
+      "type": "object",
+      "required": [
+        "issuer",
+        "sig"
+      ],
+      "properties": {
+        "issuer": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sig": {
+          "type": "string",
+          "minLength": 16
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,143 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sourceos.local/schemas/ledger/event.schema.json",
+  "title": "LedgerEvent",
+  "type": "object",
+  "required": [
+    "event_id",
+    "ts",
+    "type",
+    "actor",
+    "payload_hash",
+    "policy_hash",
+    "prev_hash",
+    "hash"
+  ],
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "minLength": 8
+    },
+    "ts": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "A2A_HELLO",
+        "A2A_ATTEST",
+        "A2A_DISCOVER",
+        "A2A_NEGOTIATE",
+        "A2A_GRANT",
+        "A2A_REVOKE",
+        "MCP_CALL",
+        "MCP_RESULT"
+      ]
+    },
+    "actor": {
+      "type": "object",
+      "required": [
+        "spiffe_id"
+      ],
+      "properties": {
+        "spiffe_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "aum_digest": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        }
+      },
+      "additionalProperties": false
+    },
+    "target": {
+      "type": "object",
+      "properties": {
+        "spiffe_id": {
+          "type": "string"
+        },
+        "server": {
+          "type": "string"
+        },
+        "tool": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "payload_hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "policy_hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "decision": {
+      "type": "object",
+      "properties": {
+        "allow": {
+          "type": "boolean"
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "redaction": {
+      "type": "object",
+      "properties": {
+        "applied": {
+          "type": "boolean"
+        },
+        "rules": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "prev_hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "signatures": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "kind",
+          "sig"
+        ],
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "service",
+              "human"
+            ]
+          },
+          "spiffe_id": {
+            "type": "string"
+          },
+          "sig": {
+            "type": "string",
+            "minLength": 16
+          }
+        },
+        "additionalProperties": false
+      },
+      "default": []
+    }
+  },
+  "additionalProperties": false
+}
