@@ -1,5 +1,5 @@
 {
-  "count": 4,
+  "count": 6,
   "items": [
     {
       "$id": "https://sourceos.local/schemas/canonical/attestation_bundle.schema.json",
@@ -24,6 +24,18 @@
       "path": "schemas/canonical/quorum_proof.schema.json",
       "sha256": "sha256:d3ceec20d3268c30c1f0fda17f0981654a850ad39073ac5b1ff4aff62a0b2bb2",
       "title": "QuorumProof"
+    },
+    {
+      "$id": "https://sourceos.local/schemas/mcp/capability_registry.schema.json",
+      "path": "mcp/registry/capability_registry.schema.json",
+      "sha256": "sha256:2d6576ed646ae80da2cf750819e5f835dfa53336596dfd6aaf8bc86804ac38bd",
+      "title": "MCP Capability Registry"
+    },
+    {
+      "$id": "https://sourceos.local/schemas/ledger/event.schema.json",
+      "path": "ledger/schema.json",
+      "sha256": "sha256:af434ecfb7b9836fae6c67e2ee33d984b5c9a050c62a8b39f97822fea43264d5",
+      "title": "LedgerEvent"
     }
   ],
   "version": 1
