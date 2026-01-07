@@ -1,0 +1,30 @@
+{
+  "count": 4,
+  "items": [
+    {
+      "$id": "https://sourceos.local/schemas/canonical/attestation_bundle.schema.json",
+      "path": "schemas/canonical/attestation_bundle.schema.json",
+      "sha256": "sha256:485d0ed689cc1b3184a18d555bb3eba75c4110f7087d0c3c6c54c575447a4272",
+      "title": "AttestationBundle"
+    },
+    {
+      "$id": "https://sourceos.local/schemas/canonical/grant.schema.json",
+      "path": "schemas/canonical/grant.schema.json",
+      "sha256": "sha256:fda3e69880039b75b044941fe40313ca40e0fb3104c5cd4cb90fedb8380999e5",
+      "title": "Grant"
+    },
+    {
+      "$id": "https://sourceos.local/schemas/canonical/policy_decision.schema.json",
+      "path": "schemas/canonical/policy_decision.schema.json",
+      "sha256": "sha256:fb6794506d26bafe0b5db7870ccec82d2ef3b51b591a5e0c5f3885691d3fd330",
+      "title": "PolicyDecision"
+    },
+    {
+      "$id": "https://sourceos.local/schemas/canonical/quorum_proof.schema.json",
+      "path": "schemas/canonical/quorum_proof.schema.json",
+      "sha256": "sha256:d3ceec20d3268c30c1f0fda17f0981654a850ad39073ac5b1ff4aff62a0b2bb2",
+      "title": "QuorumProof"
+    }
+  ],
+  "version": 1
+}
