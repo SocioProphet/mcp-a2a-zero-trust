@@ -1,0 +1,18 @@
+{
+  "attestation_bundle_ref": "repo://mcp-a2a-zero-trust/examples/attestation_bundle.example.json",
+  "policy_decision_ref": "repo://mcp-a2a-zero-trust/examples/policy_decision.example.json",
+  "grant_ref": "repo://mcp-a2a-zero-trust/examples/grant.example.json",
+  "dispatch": {
+    "transport": "a2a",
+    "kind": "a2a_skill",
+    "agent_id": "semantic-broker",
+    "skill": "semantic_search",
+    "capability_ref": "capd://caps.semantic.search_bi"
+  },
+  "expected_ledger_events": [
+    "A2A_HELLO",
+    "A2A_ATTEST",
+    "A2A_NEGOTIATE",
+    "A2A_GRANT"
+  ]
+}

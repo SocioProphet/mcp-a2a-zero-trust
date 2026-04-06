@@ -50,18 +50,49 @@
     "capability": {
       "type": "object",
       "required": [
-        "server",
-        "tool",
+        "kind",
+        "capability_ref",
+        "capability_digest",
         "effect"
       ],
       "properties": {
-        "server": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "mcp_tool",
+            "a2a_skill",
+            "deployment",
+            "runner_action"
+          ]
+        },
+        "capability_ref": {
           "type": "string",
           "minLength": 1
         },
-        "tool": {
+        "capability_digest": {
           "type": "string",
-          "minLength": 1
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        },
+        "server": {
+          "type": "string"
+        },
+        "tool": {
+          "type": "string"
+        },
+        "agent_id": {
+          "type": "string"
+        },
+        "skill": {
+          "type": "string"
+        },
+        "deployment_id": {
+          "type": "string"
+        },
+        "operation": {
+          "type": "string"
+        },
+        "executor_ref": {
+          "type": "string"
         },
         "effect": {
           "type": "string",

@@ -50,6 +50,8 @@
       "type": "object",
       "required": [
         "name",
+        "capability_ref",
+        "capability_digest",
         "effect",
         "schema"
       ],
@@ -57,6 +59,14 @@
         "name": {
           "type": "string",
           "minLength": 1
+        },
+        "capability_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "capability_digest": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
         },
         "effect": {
           "type": "string",
@@ -97,6 +107,38 @@
             },
             "out": {
               "type": "object"
+            }
+          },
+          "additionalProperties": false
+        },
+        "trustHints": {
+          "type": "object",
+          "properties": {
+            "attestationRequired": {
+              "type": "boolean",
+              "default": true
+            },
+            "grantRequired": {
+              "type": "boolean",
+              "default": true
+            },
+            "quorumRuleHint": {
+              "type": "string"
+            },
+            "constraintProfileRef": {
+              "type": "string"
+            },
+            "redactionProfileRef": {
+              "type": "string"
+            },
+            "ledgerMode": {
+              "type": "string",
+              "enum": [
+                "required",
+                "best_effort",
+                "off"
+              ],
+              "default": "required"
             }
           },
           "additionalProperties": false
