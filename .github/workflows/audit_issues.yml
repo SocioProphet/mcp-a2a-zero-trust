@@ -1,0 +1,49 @@
+name: audit-issues
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 9 * * *"   # daily 09:00 UTC
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: read
+      contents: read
+    steps:
+      - name: Audit issue bodies for DoD + Acceptance
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+
+            function hasRequired(body) {
+              const b = (body || "");
+              const hasDoD = /\b(Definition of Done|DoD)\b/i.test(b);
+              const hasAcc = /\b(Acceptance Criteria|Acceptance)\b/i.test(b);
+              return {hasDoD, hasAcc};
+            }
+
+            const issues = await github.paginate(
+              github.rest.issues.listForRepo,
+              { owner, repo, state: "all", per_page: 100 }
+            );
+
+            const missing = [];
+            for (const it of issues) {
+              if (it.pull_request) continue; // ignore PRs
+              const {hasDoD, hasAcc} = hasRequired(it.body);
+              if (!(hasDoD && hasAcc)) {
+                missing.push({ number: it.number, title: it.title, hasDoD, hasAcc });
+              }
+            }
+
+            core.info(`Scanned ${issues.length} issues (PRs ignored).`);
+            if (missing.length) {
+              core.setFailed(
+                "Issues missing required sections:\n" +
+                missing.map(m => `- #${m.number} | DoD=${m.hasDoD} | Acceptance=${m.hasAcc} | ${m.title}`).join("\n")
+              );
+            } else {
+              core.info("OK: every issue contains DoD + Acceptance sections");
+            }
