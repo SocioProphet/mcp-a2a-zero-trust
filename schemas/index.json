@@ -1,5 +1,5 @@
 {
-  "count": 6,
+  "count": 7,
   "items": [
     {
       "$id": "https://sourceos.local/schemas/canonical/attestation_bundle.schema.json",
@@ -10,13 +10,13 @@
     {
       "$id": "https://sourceos.local/schemas/canonical/grant.schema.json",
       "path": "schemas/canonical/grant.schema.json",
-      "sha256": "sha256:fda3e69880039b75b044941fe40313ca40e0fb3104c5cd4cb90fedb8380999e5",
+      "sha256": "sha256:34219488d59fa6cad4adfd41522c0009a054067c5df09a4c05ed38805797f3a6",
       "title": "Grant"
     },
     {
       "$id": "https://sourceos.local/schemas/canonical/policy_decision.schema.json",
       "path": "schemas/canonical/policy_decision.schema.json",
-      "sha256": "sha256:fb6794506d26bafe0b5db7870ccec82d2ef3b51b591a5e0c5f3885691d3fd330",
+      "sha256": "sha256:fa836113aeda2b1d65b9a3868cb692e266fa51d516bb3a3f248e58e74d6dfc89",
       "title": "PolicyDecision"
     },
     {
@@ -24,6 +24,12 @@
       "path": "schemas/canonical/quorum_proof.schema.json",
       "sha256": "sha256:d3ceec20d3268c30c1f0fda17f0981654a850ad39073ac5b1ff4aff62a0b2bb2",
       "title": "QuorumProof"
+    },
+    {
+      "$id": "https://socioprophet.dev/schema/governance/runtime_evidence_refs.schema.json",
+      "path": "schemas/governance/runtime_evidence_refs.schema.json",
+      "sha256": "sha256:e597d29c971b1af9dbf46421f2d1a53d71648b946b0f9e1629146378550b215f",
+      "title": "RuntimeEvidenceRefs"
     },
     {
       "$id": "https://sourceos.local/schemas/mcp/capability_registry.schema.json",
@@ -34,7 +40,7 @@
     {
       "$id": "https://sourceos.local/schemas/ledger/event.schema.json",
       "path": "ledger/schema.json",
-      "sha256": "sha256:af434ecfb7b9836fae6c67e2ee33d984b5c9a050c62a8b39f97822fea43264d5",
+      "sha256": "sha256:1250be18e6fecc57851e6a4d505edde7885e7df38c37ec36c0042070bb15b492",
       "title": "LedgerEvent"
     }
   ],
