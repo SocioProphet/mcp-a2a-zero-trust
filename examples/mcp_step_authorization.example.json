@@ -1,0 +1,16 @@
+{
+  "attestation_bundle_ref": "repo://mcp-a2a-zero-trust/examples/attestation_bundle.example.json",
+  "policy_decision_ref": "repo://mcp-a2a-zero-trust/examples/policy_decision.example.json",
+  "grant_ref": "repo://mcp-a2a-zero-trust/examples/grant.example.json",
+  "dispatch": {
+    "transport": "mcp",
+    "kind": "mcp_tool",
+    "server": "fs.introspect",
+    "tool": "hash",
+    "capability_ref": "capd://caps.audit.appendonly"
+  },
+  "expected_ledger_events": [
+    "MCP_CALL",
+    "MCP_RESULT"
+  ]
+}

@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security issue
+    url: https://github.com/SocioProphet/mcp-a2a-zero-trust/security/policy
+    about: Please report security issues via the Security Policy.

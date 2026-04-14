@@ -7,7 +7,14 @@
     "aum_digest": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
     "session_id": "sess_abc123"
   },
-  "capability": { "server": "fs.introspect", "tool": "hash", "effect": "read" },
+  "capability": {
+    "kind": "mcp_tool",
+    "capability_ref": "capd://caps.audit.appendonly",
+    "capability_digest": "sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+    "server": "fs.introspect",
+    "tool": "hash",
+    "effect": "read"
+  },
   "constraints": { "paths_allow": ["$HOME/**"], "bytes_max": 50000000, "rate_per_min": 6 },
   "policy_hash": "sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
   "quorum_proof": {

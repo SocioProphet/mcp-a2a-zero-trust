@@ -10,7 +10,7 @@
     {
       "$id": "https://sourceos.local/schemas/canonical/grant.schema.json",
       "path": "schemas/canonical/grant.schema.json",
-      "sha256": "sha256:34219488d59fa6cad4adfd41522c0009a054067c5df09a4c05ed38805797f3a6",
+      "sha256": "sha256:2aac20b5fc9ce2ef72c0609bc1687f2b4b17a2167ef3148fa8ad3c4c1494f0b1",
       "title": "Grant"
     },
     {
@@ -34,13 +34,13 @@
     {
       "$id": "https://sourceos.local/schemas/mcp/capability_registry.schema.json",
       "path": "mcp/registry/capability_registry.schema.json",
-      "sha256": "sha256:2d6576ed646ae80da2cf750819e5f835dfa53336596dfd6aaf8bc86804ac38bd",
+      "sha256": "sha256:f3e793394baee2c4782762de565e988b4fc527639b41839aa859d2f9cbb3d73d",
       "title": "MCP Capability Registry"
     },
     {
       "$id": "https://sourceos.local/schemas/ledger/event.schema.json",
       "path": "ledger/schema.json",
-      "sha256": "sha256:1250be18e6fecc57851e6a4d505edde7885e7df38c37ec36c0042070bb15b492",
+      "sha256": "sha256:ab568bbb385047e8871e9b7ab4093de4736f742098b1794b2cf572ecdc2f8841",
       "title": "LedgerEvent"
     }
   ],

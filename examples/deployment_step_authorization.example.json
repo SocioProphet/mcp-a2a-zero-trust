@@ -1,0 +1,16 @@
+{
+  "attestation_bundle_ref": "repo://mcp-a2a-zero-trust/examples/attestation_bundle.example.json",
+  "policy_decision_ref": "repo://mcp-a2a-zero-trust/examples/policy_decision.example.json",
+  "grant_ref": "repo://mcp-a2a-zero-trust/examples/grant.example.json",
+  "dispatch": {
+    "transport": "openai",
+    "kind": "deployment",
+    "deployment_id": "anotherai/deployment/search-bi:prod#1",
+    "operation": "chat.completions.create",
+    "capability_ref": "capd://caps.semantic.search_bi"
+  },
+  "expected_ledger_events": [
+    "WF_DISPATCH",
+    "WF_RESULT"
+  ]
+}

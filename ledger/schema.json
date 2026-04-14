@@ -33,7 +33,15 @@
         "A2A_GRANT",
         "A2A_REVOKE",
         "MCP_CALL",
-        "MCP_RESULT"
+        "MCP_RESULT",
+        "WF_VALIDATE",
+        "WF_PLACE",
+        "WF_DISPATCH",
+        "WF_RESULT",
+        "WF_REPLAY",
+        "WF_COMPENSATE",
+        "WF_APPROVAL_REQUEST",
+        "WF_APPROVAL_DECISION"
       ]
     },
     "actor": {
@@ -56,13 +64,44 @@
     "target": {
       "type": "object",
       "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "mcp_tool",
+            "a2a_skill",
+            "deployment",
+            "runner_action"
+          ]
+        },
         "spiffe_id": {
           "type": "string"
+        },
+        "capability_ref": {
+          "type": "string"
+        },
+        "capability_digest": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
         },
         "server": {
           "type": "string"
         },
         "tool": {
+          "type": "string"
+        },
+        "agent_id": {
+          "type": "string"
+        },
+        "skill": {
+          "type": "string"
+        },
+        "deployment_id": {
+          "type": "string"
+        },
+        "operation": {
+          "type": "string"
+        },
+        "executor_ref": {
           "type": "string"
         }
       },

@@ -1,0 +1,58 @@
+name: "Backlog Item"
+description: "Work item with Definition of Done + Acceptance Criteria"
+title: "[feat] "
+labels: ["backlog"]
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What are we doing and why?
+      placeholder: Clear, testable intent.
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope / Non-goals
+      placeholder: |
+        In-scope:
+        - ...
+        Non-goals:
+        - ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: dod
+    attributes:
+      label: Definition of Done (DoD)
+      placeholder: |
+        - Implementation merged
+        - Tests added/updated and passing
+        - Docs updated (if applicable)
+        - Examples updated (if contracts changed)
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance Criteria
+      placeholder: |
+        - Given X, when Y, then Z
+        - Includes at least one failure/negative case (where applicable)
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Test Evidence
+      placeholder: |
+        - make verify
+        - make audit-issues
+        - (any new commands)
+    validations:
+      required: true
