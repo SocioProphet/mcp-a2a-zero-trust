@@ -18,5 +18,15 @@
       { "kind": "human", "spiffe_id": "spiffe://validators/human1", "sig": "MEUCIQDfakefakefakefakefakefakefakefakefakefakefakefake" },
       { "kind": "human", "spiffe_id": "spiffe://validators/human2", "sig": "MEUCIQDfakefakefakefakefakefakefakefakefakefakefakefake" }
     ]
+  },
+  "evidence_refs": {
+    "event_ir_ref": "worm://event-ir/e1",
+    "event_ir_hash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+    "semantic_proof_ref": "worm://proofs/prime/p1",
+    "semantic_proof_hash": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+    "hdt_decision_ref": "worm://hdt/omega/d1",
+    "hdt_decision_hash": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+    "attestation_bundle_ref": "worm://attest/a1",
+    "attestation_bundle_hash": "sha256:4444444444444444444444444444444444444444444444444444444444444444"
   }
 }

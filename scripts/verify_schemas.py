@@ -61,6 +61,7 @@ def main() -> int:
         "examples/policy_decision.example.json": "schemas/canonical/policy_decision.schema.json",
         "examples/grant.example.json": "schemas/canonical/grant.schema.json",
         "examples/ledger_event.example.json": "ledger/schema.json",
+        "examples/runtime_evidence_refs.example.json": "schemas/governance/runtime_evidence_refs.schema.json",
     }
 
     for ex_path, schema_path in schema_map.items():

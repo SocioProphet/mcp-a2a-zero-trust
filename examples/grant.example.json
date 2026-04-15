@@ -7,7 +7,14 @@
     "aum_digest": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
     "session_id": "sess_abc123"
   },
-  "capability": { "server": "fs.introspect", "tool": "hash", "effect": "read" },
+  "capability": {
+    "kind": "mcp_tool",
+    "capability_ref": "capd://caps.audit.appendonly",
+    "capability_digest": "sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+    "server": "fs.introspect",
+    "tool": "hash",
+    "effect": "read"
+  },
   "constraints": { "paths_allow": ["$HOME/**"], "bytes_max": 50000000, "rate_per_min": 6 },
   "policy_hash": "sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
   "quorum_proof": {
@@ -19,5 +26,15 @@
       { "kind": "human", "spiffe_id": "spiffe://validators/human2", "sig": "MEUCIQDfakefakefakefakefakefakefakefakefakefakefakefake" }
     ]
   },
-  "sig": { "issuer": "spiffe://sourceos/policyarbiter", "sig": "MEUCIQDfakefakefakefakefakefakefakefakefakefakefakefake" }
+  "sig": { "issuer": "spiffe://sourceos/policyarbiter", "sig": "MEUCIQDfakefakefakefakefakefakefakefakefakefakefakefake" },
+  "evidence_refs": {
+    "event_ir_ref": "worm://event-ir/e1",
+    "event_ir_hash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+    "semantic_proof_ref": "worm://proofs/prime/p1",
+    "semantic_proof_hash": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+    "hdt_decision_ref": "worm://hdt/omega/d1",
+    "hdt_decision_hash": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+    "attestation_bundle_ref": "worm://attest/a1",
+    "attestation_bundle_hash": "sha256:4444444444444444444444444444444444444444444444444444444444444444"
+  }
 }

@@ -13,6 +13,7 @@
     "prev_hash",
     "hash"
   ],
+  "description": "Append-only ledger event; grant_id and evidence_refs are optional governance overlays.",
   "properties": {
     "event_id": {
       "type": "string",
@@ -176,6 +177,14 @@
         "additionalProperties": false
       },
       "default": []
+    },
+    "grant_id": {
+      "type": "string",
+      "minLength": 8,
+      "description": "Optional reference to the Grant that authorized this ledger event."
+    },
+    "evidence_refs": {
+      "$ref": "https://socioprophet.dev/schema/governance/runtime_evidence_refs.schema.json"
     }
   },
   "additionalProperties": false
