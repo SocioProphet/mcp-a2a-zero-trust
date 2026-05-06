@@ -1,0 +1,139 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sourceos.local/schemas/interop/operation_command.schema.json",
+  "title": "OperationCommand",
+  "description": "Transport binding for a single interop operation. Every cross-agent or cross-tool call MUST be modelled as an OperationCommand that references a DelegatedAuthority envelope and a TrustBoundary. The command cannot be dispatched without a valid, unexpired envelope. Audit events (LedgerEvent) are emitted for every command regardless of outcome.",
+  "type": "object",
+  "required": [
+    "command_id",
+    "operation",
+    "authority_envelope_id",
+    "trust_boundary_id",
+    "transport",
+    "target",
+    "payload_hash",
+    "issued_at",
+    "policy_hash"
+  ],
+  "properties": {
+    "command_id": {
+      "type": "string",
+      "minLength": 8,
+      "description": "Stable, globally unique identifier for this command instance."
+    },
+    "operation": {
+      "type": "string",
+      "enum": [
+        "mcp.tool.invoke",
+        "a2a.message.send",
+        "a2a.task.delegate",
+        "tool_grant.validate",
+        "tool_grant.revoke",
+        "interop.diagnostics.export_redacted"
+      ],
+      "description": "Operation type; determines transport semantics and required LedgerEvent type."
+    },
+    "authority_envelope_id": {
+      "type": "string",
+      "minLength": 8,
+      "description": "Reference to the DelegatedAuthority envelope that authorises this command."
+    },
+    "trust_boundary_id": {
+      "type": "string",
+      "minLength": 8,
+      "description": "Reference to the TrustBoundary scoping this command."
+    },
+    "transport": {
+      "type": "string",
+      "enum": [
+        "mcp",
+        "a2a",
+        "internal"
+      ],
+      "description": "Wire transport for this command: 'mcp' for tool invocations, 'a2a' for agent-to-agent calls, 'internal' for grant lifecycle and diagnostic operations."
+    },
+    "target": {
+      "type": "object",
+      "description": "Transport-specific target descriptor. Contents vary by operation type.",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "mcp_tool",
+            "a2a_skill",
+            "remote_agent",
+            "grant",
+            "diagnostic_export"
+          ]
+        },
+        "server": {
+          "type": "string",
+          "description": "MCP server name (mcp.tool.invoke)."
+        },
+        "tool": {
+          "type": "string",
+          "description": "MCP tool name (mcp.tool.invoke)."
+        },
+        "capability_ref": {
+          "type": "string",
+          "description": "Canonical capability reference (capd:// URI)."
+        },
+        "capability_digest": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        },
+        "agent_id": {
+          "type": "string",
+          "description": "Target agent identifier (a2a.message.send, a2a.task.delegate)."
+        },
+        "skill": {
+          "type": "string",
+          "description": "Agent skill name (a2a.message.send)."
+        },
+        "task_type": {
+          "type": "string",
+          "description": "Task type being delegated (a2a.task.delegate)."
+        },
+        "grant_id": {
+          "type": "string",
+          "description": "Grant identifier being checked or revoked (tool_grant.validate, tool_grant.revoke)."
+        },
+        "export_scope": {
+          "type": "string",
+          "description": "Scope filter for the diagnostic export (interop.diagnostics.export_redacted)."
+        }
+      },
+      "additionalProperties": false
+    },
+    "payload_hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$",
+      "description": "SHA-256 hash of the operation payload; the payload itself is never stored in the command record."
+    },
+    "issued_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "policy_hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$",
+      "description": "Hash of the policy evaluated at command issue time."
+    },
+    "ledger_event_type": {
+      "type": "string",
+      "enum": [
+        "OP_TOOL_INVOKE",
+        "OP_MSG_SEND",
+        "OP_TASK_DELEGATE",
+        "OP_GRANT_VALIDATE",
+        "OP_GRANT_REVOKE",
+        "OP_DIAG_EXPORT"
+      ],
+      "description": "LedgerEvent type that MUST be emitted when this command is executed, regardless of outcome."
+    },
+    "evidence_refs": {
+      "$ref": "https://socioprophet.dev/schema/governance/runtime_evidence_refs.schema.json"
+    }
+  },
+  "additionalProperties": false
+}

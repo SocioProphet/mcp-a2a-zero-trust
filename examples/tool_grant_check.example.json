@@ -1,0 +1,22 @@
+{
+  "check_id": "chk_aabbccdd",
+  "operation": "tool_grant.validate",
+  "grant_id": "grant_12345678",
+  "checked_at": "2026-01-07T00:01:00Z",
+  "actor": {
+    "spiffe_id": "spiffe://sourceos/policyarbiter",
+    "aum_digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222"
+  },
+  "result": {
+    "valid": true,
+    "expired": false,
+    "revoked": false,
+    "reason": "Grant is active and within TTL"
+  },
+  "trust_boundary_id": "tb_mcp_fs_introspect_01",
+  "policy_hash": "sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+  "evidence_refs": {
+    "event_ir_ref": "worm://event-ir/e2",
+    "event_ir_hash": "sha256:2222222222222222222222222222222222222222222222222222222222222222"
+  }
+}

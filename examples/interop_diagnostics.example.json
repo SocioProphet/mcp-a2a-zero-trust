@@ -1,0 +1,43 @@
+{
+  "export_id": "diag_export_001",
+  "exported_at": "2026-01-07T01:00:00Z",
+  "requested_by": {
+    "spiffe_id": "spiffe://sourceos/auditor",
+    "aum_digest": "sha256:5555555555555555555555555555555555555555555555555555555555555555"
+  },
+  "redaction_policy_hash": "sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+  "redacted_fields": [
+    "credentials",
+    "prompts",
+    "payloads",
+    "identifiers"
+  ],
+  "trace_events": [
+    {
+      "event_id": "evt_00000001",
+      "ts": "2026-01-07T00:00:01Z",
+      "operation": "mcp.tool.invoke",
+      "actor_ref": "actor-ref:redacted:a1b2c3",
+      "command_id": "cmd_11223344",
+      "trust_boundary_id": "tb_mcp_fs_introspect_01",
+      "outcome": "success",
+      "policy_hash": "sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+    },
+    {
+      "event_id": "evt_00000002",
+      "ts": "2026-01-07T00:02:00Z",
+      "operation": "mcp.tool.invoke",
+      "actor_ref": "actor-ref:redacted:d4e5f6",
+      "command_id": "cmd_11223345",
+      "trust_boundary_id": "tb_mcp_fs_introspect_01",
+      "outcome": "failure",
+      "failure_class": "grant_denied",
+      "policy_hash": "sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+    }
+  ],
+  "policy_hash": "sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+  "evidence_refs": {
+    "event_ir_ref": "worm://event-ir/e_diag",
+    "event_ir_hash": "sha256:6666666666666666666666666666666666666666666666666666666666666666"
+  }
+}

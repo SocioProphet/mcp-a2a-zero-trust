@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sourceos.local/schemas/interop/interop_failure.schema.json",
+  "title": "InteropFailure",
+  "description": "Canonical failure record for any interop operation that could not be completed due to policy, grant, credential, or availability constraints. All five failure classes fail closed: the calling agent MUST NOT retry without external remediation. Every failure emits the corresponding operation-type LedgerEvent with allow=false.",
+  "type": "object",
+  "required": [
+    "failure_id",
+    "failure_class",
+    "operation",
+    "actor",
+    "ts",
+    "reason",
+    "policy_hash"
+  ],
+  "properties": {
+    "failure_id": {
+      "type": "string",
+      "minLength": 8,
+      "description": "Stable, globally unique identifier for this failure record."
+    },
+    "failure_class": {
+      "type": "string",
+      "enum": [
+        "tool_unavailable",
+        "grant_denied",
+        "credential_revoked",
+        "external_admin_required",
+        "policy_blocked"
+      ],
+      "description": "Canonical failure class. tool_unavailable: the MCP tool or remote agent is not reachable or registered. grant_denied: no valid grant exists for the requested operation and scope. credential_revoked: the actor's credential or grant has been explicitly revoked. external_admin_required: the operation requires out-of-band human or admin approval before proceeding. policy_blocked: the policy fabric evaluated and explicitly denied this operation."
+    },
+    "operation": {
+      "type": "string",
+      "enum": [
+        "mcp.tool.invoke",
+        "a2a.message.send",
+        "a2a.task.delegate",
+        "tool_grant.validate",
+        "tool_grant.revoke",
+        "interop.diagnostics.export_redacted"
+      ],
+      "description": "The operation type that failed."
+    },
+    "command_id": {
+      "type": "string",
+      "minLength": 8,
+      "description": "Optional reference to the OperationCommand that triggered this failure."
+    },
+    "actor": {
+      "type": "object",
+      "required": [
+        "spiffe_id"
+      ],
+      "properties": {
+        "spiffe_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "aum_digest": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        }
+      },
+      "additionalProperties": false
+    },
+    "trust_boundary_id": {
+      "type": "string",
+      "minLength": 8,
+      "description": "Reference to the TrustBoundary at which the failure occurred."
+    },
+    "grant_id": {
+      "type": "string",
+      "minLength": 8,
+      "description": "Optional reference to the Grant that was absent, expired, or revoked."
+    },
+    "ts": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of the failure."
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Human-readable explanation of why the operation failed."
+    },
+    "policy_hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$",
+      "description": "Hash of the policy that produced or witnessed this failure."
+    },
+    "evidence_refs": {
+      "$ref": "https://socioprophet.dev/schema/governance/runtime_evidence_refs.schema.json"
+    }
+  },
+  "additionalProperties": false
+}

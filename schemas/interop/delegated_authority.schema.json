@@ -1,0 +1,136 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sourceos.local/schemas/interop/delegated_authority.schema.json",
+  "title": "DelegatedAuthority",
+  "description": "Authority envelope that MUST accompany every cross-agent or cross-tool action. Captures actor, delegate, operation scope, trust boundary, grant reference, and constraints. An OperationCommand is only valid when it references an unexpired, policy-conformant DelegatedAuthority envelope.",
+  "type": "object",
+  "required": [
+    "envelope_id",
+    "issued_at",
+    "expires_at",
+    "actor",
+    "delegate",
+    "operation",
+    "scope",
+    "trust_boundary_id",
+    "grant_id",
+    "policy_hash"
+  ],
+  "properties": {
+    "envelope_id": {
+      "type": "string",
+      "minLength": 8,
+      "description": "Stable, globally unique identifier for this delegation envelope."
+    },
+    "issued_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Absolute expiry; expired envelopes fail closed regardless of grant state."
+    },
+    "actor": {
+      "type": "object",
+      "required": [
+        "spiffe_id"
+      ],
+      "properties": {
+        "spiffe_id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "SPIFFE identity of the principal that is delegating authority."
+        },
+        "aum_digest": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$",
+          "description": "Attestation/workload measurement digest of the actor."
+        }
+      },
+      "additionalProperties": false
+    },
+    "delegate": {
+      "type": "object",
+      "required": [
+        "spiffe_id"
+      ],
+      "properties": {
+        "spiffe_id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "SPIFFE identity of the agent or service receiving delegated authority."
+        },
+        "aum_digest": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        }
+      },
+      "additionalProperties": false
+    },
+    "operation": {
+      "type": "string",
+      "enum": [
+        "mcp.tool.invoke",
+        "a2a.message.send",
+        "a2a.task.delegate",
+        "tool_grant.validate",
+        "tool_grant.revoke",
+        "interop.diagnostics.export_redacted"
+      ],
+      "description": "Specific operation type this envelope authorises."
+    },
+    "scope": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "description": "Capability references (capd:// URIs) in scope for this delegation."
+    },
+    "trust_boundary_id": {
+      "type": "string",
+      "minLength": 8,
+      "description": "Reference to the TrustBoundary that governs this delegation."
+    },
+    "grant_id": {
+      "type": "string",
+      "minLength": 8,
+      "description": "Reference to the Grant that authorises this delegation; must be valid and unexpired."
+    },
+    "policy_hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$",
+      "description": "Hash of the policy evaluated when this envelope was issued."
+    },
+    "constraints": {
+      "type": "object",
+      "description": "Operational constraints inherited from or narrowed from the underlying Grant.",
+      "additionalProperties": true
+    },
+    "sig": {
+      "type": "object",
+      "required": [
+        "issuer",
+        "sig"
+      ],
+      "properties": {
+        "issuer": {
+          "type": "string",
+          "minLength": 1,
+          "description": "SPIFFE identity of the authority that signed this envelope."
+        },
+        "sig": {
+          "type": "string",
+          "minLength": 16
+        }
+      },
+      "additionalProperties": false
+    },
+    "evidence_refs": {
+      "$ref": "https://socioprophet.dev/schema/governance/runtime_evidence_refs.schema.json"
+    }
+  },
+  "additionalProperties": false
+}

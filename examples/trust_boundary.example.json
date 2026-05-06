@@ -1,0 +1,22 @@
+{
+  "boundary_id": "tb_mcp_fs_introspect_01",
+  "kind": "mcp_server",
+  "spiffe_id": "spiffe://sourceos/mcp/fs-introspect",
+  "display_name": "fs.introspect MCP Server",
+  "capability_refs": [
+    "capd://caps.audit.appendonly",
+    "capd://caps.fs.read"
+  ],
+  "policy_hash": "sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+  "status": "active",
+  "trust_tier": "MEDIUM",
+  "attestation_required": true,
+  "grant_required": true,
+  "ledger_mode": "required",
+  "evidence_refs": {
+    "event_ir_ref": "worm://event-ir/e1",
+    "event_ir_hash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+    "attestation_bundle_ref": "worm://attest/a1",
+    "attestation_bundle_hash": "sha256:4444444444444444444444444444444444444444444444444444444444444444"
+  }
+}
