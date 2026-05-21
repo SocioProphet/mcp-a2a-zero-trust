@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sourceos.local/schemas/interop/trust_boundary.schema.json",
+  "title": "TrustBoundary",
+  "description": "Declares the policy-governed security boundary around an MCP server, MCP tool, remote agent, connector, or model endpoint. Every interop call must be scoped to a TrustBoundary before a delegated authority envelope or OperationCommand may be issued.",
+  "type": "object",
+  "required": [
+    "boundary_id",
+    "kind",
+    "spiffe_id",
+    "policy_hash",
+    "status"
+  ],
+  "properties": {
+    "boundary_id": {
+      "type": "string",
+      "minLength": 8,
+      "description": "Stable, globally unique identifier for this trust boundary."
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "mcp_server",
+        "mcp_tool",
+        "remote_agent",
+        "connector",
+        "model_endpoint"
+      ],
+      "description": "Classification of the resource protected by this boundary."
+    },
+    "spiffe_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "SPIFFE identity of the resource at this boundary."
+    },
+    "display_name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Human-readable name for audit and diagnostic output."
+    },
+    "capability_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "default": [],
+      "description": "Canonical capability references (capd:// URIs) associated with this boundary."
+    },
+    "policy_hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$",
+      "description": "Hash of the policy document governing this boundary."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "suspended",
+        "revoked"
+      ],
+      "description": "Lifecycle state; suspended and revoked boundaries fail closed for all operations."
+    },
+    "trust_tier": {
+      "type": "string",
+      "enum": [
+        "LOW",
+        "MEDIUM",
+        "HIGH"
+      ],
+      "default": "HIGH",
+      "description": "Minimum danger class at which cross-boundary calls are evaluated."
+    },
+    "attestation_required": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether a valid AttestationBundle is required before issuing a grant at this boundary."
+    },
+    "grant_required": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether a valid, unexpired Grant is required before dispatching an OperationCommand across this boundary."
+    },
+    "ledger_mode": {
+      "type": "string",
+      "enum": [
+        "required",
+        "best_effort",
+        "off"
+      ],
+      "default": "required",
+      "description": "Ledger write mode; 'required' means the operation is aborted if the ledger is unreachable."
+    },
+    "evidence_refs": {
+      "$ref": "https://socioprophet.dev/schema/governance/runtime_evidence_refs.schema.json"
+    }
+  },
+  "additionalProperties": false
+}

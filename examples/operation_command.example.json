@@ -1,0 +1,22 @@
+{
+  "command_id": "cmd_11223344",
+  "operation": "mcp.tool.invoke",
+  "authority_envelope_id": "env_abcdef01",
+  "trust_boundary_id": "tb_mcp_fs_introspect_01",
+  "transport": "mcp",
+  "target": {
+    "kind": "mcp_tool",
+    "server": "fs.introspect",
+    "tool": "hash",
+    "capability_ref": "capd://caps.audit.appendonly",
+    "capability_digest": "sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+  },
+  "payload_hash": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+  "issued_at": "2026-01-07T00:00:01Z",
+  "policy_hash": "sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+  "ledger_event_type": "OP_TOOL_INVOKE",
+  "evidence_refs": {
+    "event_ir_ref": "worm://event-ir/e1",
+    "event_ir_hash": "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+  }
+}

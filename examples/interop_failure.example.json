@@ -1,0 +1,18 @@
+{
+  "failure_id": "fail_99887766",
+  "failure_class": "grant_denied",
+  "operation": "mcp.tool.invoke",
+  "command_id": "cmd_11223344",
+  "actor": {
+    "spiffe_id": "spiffe://sourceos/agent/unknown-agent",
+    "aum_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "trust_boundary_id": "tb_mcp_fs_introspect_01",
+  "ts": "2026-01-07T00:02:00Z",
+  "reason": "No valid grant found for capability capd://caps.audit.appendonly at trust boundary tb_mcp_fs_introspect_01",
+  "policy_hash": "sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+  "evidence_refs": {
+    "event_ir_ref": "worm://event-ir/e3",
+    "event_ir_hash": "sha256:3333333333333333333333333333333333333333333333333333333333333333"
+  }
+}

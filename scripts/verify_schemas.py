@@ -25,6 +25,12 @@ def main() -> int:
         "schemas/canonical/policy_decision.schema.json",
         "schemas/canonical/grant.schema.json",
         "ledger/schema.json",
+        "schemas/interop/trust_boundary.schema.json",
+        "schemas/interop/delegated_authority.schema.json",
+        "schemas/interop/operation_command.schema.json",
+        "schemas/interop/tool_grant_check.schema.json",
+        "schemas/interop/interop_failure.schema.json",
+        "schemas/interop/interop_diagnostics.schema.json",
     ]
     for r in required:
         if not pathlib.Path(r).is_file():
@@ -62,6 +68,12 @@ def main() -> int:
         "examples/grant.example.json": "schemas/canonical/grant.schema.json",
         "examples/ledger_event.example.json": "ledger/schema.json",
         "examples/runtime_evidence_refs.example.json": "schemas/governance/runtime_evidence_refs.schema.json",
+        "examples/trust_boundary.example.json": "schemas/interop/trust_boundary.schema.json",
+        "examples/delegated_authority.example.json": "schemas/interop/delegated_authority.schema.json",
+        "examples/operation_command.example.json": "schemas/interop/operation_command.schema.json",
+        "examples/tool_grant_check.example.json": "schemas/interop/tool_grant_check.schema.json",
+        "examples/interop_failure.example.json": "schemas/interop/interop_failure.schema.json",
+        "examples/interop_diagnostics.example.json": "schemas/interop/interop_diagnostics.schema.json",
     }
 
     for ex_path, schema_path in schema_map.items():

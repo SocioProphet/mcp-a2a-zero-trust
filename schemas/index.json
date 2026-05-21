@@ -1,5 +1,5 @@
 {
-  "count": 7,
+  "count": 13,
   "items": [
     {
       "$id": "https://sourceos.local/schemas/canonical/attestation_bundle.schema.json",
@@ -32,6 +32,42 @@
       "title": "RuntimeEvidenceRefs"
     },
     {
+      "$id": "https://sourceos.local/schemas/interop/delegated_authority.schema.json",
+      "path": "schemas/interop/delegated_authority.schema.json",
+      "sha256": "sha256:1a7f2f594893a792cb3f172a36660b97a71ec56e63e92c8bc871084e59bfd93b",
+      "title": "DelegatedAuthority"
+    },
+    {
+      "$id": "https://sourceos.local/schemas/interop/interop_diagnostics.schema.json",
+      "path": "schemas/interop/interop_diagnostics.schema.json",
+      "sha256": "sha256:aec5a0be71a1559b6322b4ba8f3760442a78900fa3083789f1e07c9324dc46a9",
+      "title": "InteropDiagnostics"
+    },
+    {
+      "$id": "https://sourceos.local/schemas/interop/interop_failure.schema.json",
+      "path": "schemas/interop/interop_failure.schema.json",
+      "sha256": "sha256:e0916071fa0a893ed130388fb449e3c0e43b826827b79cd8c1807cbb6338e989",
+      "title": "InteropFailure"
+    },
+    {
+      "$id": "https://sourceos.local/schemas/interop/operation_command.schema.json",
+      "path": "schemas/interop/operation_command.schema.json",
+      "sha256": "sha256:633731fb8dd718171e31fb2a3df962b985f6dcec1938a6536e5f22c6b59d41c7",
+      "title": "OperationCommand"
+    },
+    {
+      "$id": "https://sourceos.local/schemas/interop/tool_grant_check.schema.json",
+      "path": "schemas/interop/tool_grant_check.schema.json",
+      "sha256": "sha256:360c5c98c43742aa7f930a472fd8662eff28bba32eca9b20dd8e76d3077c923c",
+      "title": "ToolGrantCheck"
+    },
+    {
+      "$id": "https://sourceos.local/schemas/interop/trust_boundary.schema.json",
+      "path": "schemas/interop/trust_boundary.schema.json",
+      "sha256": "sha256:7e1d89397f96c1c6449fa24398315a88fb278829d8d18a385a87712009edcc97",
+      "title": "TrustBoundary"
+    },
+    {
       "$id": "https://sourceos.local/schemas/mcp/capability_registry.schema.json",
       "path": "mcp/registry/capability_registry.schema.json",
       "sha256": "sha256:f3e793394baee2c4782762de565e988b4fc527639b41839aa859d2f9cbb3d73d",
@@ -40,7 +76,7 @@
     {
       "$id": "https://sourceos.local/schemas/ledger/event.schema.json",
       "path": "ledger/schema.json",
-      "sha256": "sha256:ab568bbb385047e8871e9b7ab4093de4736f742098b1794b2cf572ecdc2f8841",
+      "sha256": "sha256:5ad5e7a06fbc279b11aadfcdd1d0169644fc2d81ab9fc0637356b407a4baebfb",
       "title": "LedgerEvent"
     }
   ],

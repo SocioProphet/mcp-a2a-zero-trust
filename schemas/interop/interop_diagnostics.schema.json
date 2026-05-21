@@ -1,0 +1,158 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sourceos.local/schemas/interop/interop_diagnostics.schema.json",
+  "title": "InteropDiagnostics",
+  "description": "Redacted diagnostic export for interop traces. Credentials, prompts, raw payloads, and sensitive identifiers are redacted according to the referenced redaction policy before export. Exports are immutable; each re-export produces a new record. The export itself is an auditable OP_DIAG_EXPORT ledger event.",
+  "type": "object",
+  "required": [
+    "export_id",
+    "exported_at",
+    "requested_by",
+    "redaction_policy_hash",
+    "redacted_fields",
+    "trace_events",
+    "policy_hash"
+  ],
+  "properties": {
+    "export_id": {
+      "type": "string",
+      "minLength": 8,
+      "description": "Stable, globally unique identifier for this diagnostic export."
+    },
+    "exported_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "requested_by": {
+      "type": "object",
+      "required": [
+        "spiffe_id"
+      ],
+      "properties": {
+        "spiffe_id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "SPIFFE identity of the actor who requested the export."
+        },
+        "aum_digest": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        }
+      },
+      "additionalProperties": false
+    },
+    "redaction_policy_hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$",
+      "description": "Hash of the redaction policy applied to this export."
+    },
+    "redacted_fields": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "enum": [
+          "credentials",
+          "prompts",
+          "payloads",
+          "identifiers",
+          "tool_arguments",
+          "agent_messages",
+          "model_outputs"
+        ]
+      },
+      "description": "Field categories redacted from all trace events in this export."
+    },
+    "trace_events": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/TraceEvent"
+      },
+      "default": [],
+      "description": "Redacted interop trace events included in this export."
+    },
+    "policy_hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$",
+      "description": "Hash of the export policy governing what may be included."
+    },
+    "evidence_refs": {
+      "$ref": "https://socioprophet.dev/schema/governance/runtime_evidence_refs.schema.json"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "TraceEvent": {
+      "type": "object",
+      "required": [
+        "event_id",
+        "ts",
+        "operation",
+        "actor_ref",
+        "trust_boundary_id",
+        "outcome",
+        "policy_hash"
+      ],
+      "properties": {
+        "event_id": {
+          "type": "string",
+          "minLength": 8,
+          "description": "Opaque reference to the original LedgerEvent; the event content itself is not embedded."
+        },
+        "ts": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "operation": {
+          "type": "string",
+          "enum": [
+            "mcp.tool.invoke",
+            "a2a.message.send",
+            "a2a.task.delegate",
+            "tool_grant.validate",
+            "tool_grant.revoke",
+            "interop.diagnostics.export_redacted"
+          ]
+        },
+        "actor_ref": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Opaque, redacted reference to the actor; never a raw SPIFFE ID or credential."
+        },
+        "command_id": {
+          "type": "string",
+          "minLength": 8,
+          "description": "Optional reference to the OperationCommand that produced this event."
+        },
+        "trust_boundary_id": {
+          "type": "string",
+          "minLength": 8,
+          "description": "Reference to the TrustBoundary at which the operation was evaluated."
+        },
+        "outcome": {
+          "type": "string",
+          "enum": [
+            "success",
+            "failure"
+          ]
+        },
+        "failure_class": {
+          "type": "string",
+          "enum": [
+            "tool_unavailable",
+            "grant_denied",
+            "credential_revoked",
+            "external_admin_required",
+            "policy_blocked"
+          ],
+          "description": "Present only when outcome=failure."
+        },
+        "policy_hash": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
