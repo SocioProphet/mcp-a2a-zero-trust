@@ -31,6 +31,7 @@ def main() -> int:
         "schemas/interop/tool_grant_check.schema.json",
         "schemas/interop/interop_failure.schema.json",
         "schemas/interop/interop_diagnostics.schema.json",
+        "schemas/workspace_context/workspace_context_capability_grant_profile.schema.json",
     ]
     for r in required:
         if not pathlib.Path(r).is_file():
@@ -74,6 +75,7 @@ def main() -> int:
         "examples/tool_grant_check.example.json": "schemas/interop/tool_grant_check.schema.json",
         "examples/interop_failure.example.json": "schemas/interop/interop_failure.schema.json",
         "examples/interop_diagnostics.example.json": "schemas/interop/interop_diagnostics.schema.json",
+        "examples/workspace_context_capability_grant_profile.example.json": "schemas/workspace_context/workspace_context_capability_grant_profile.schema.json",
     }
 
     for ex_path, schema_path in schema_map.items():
