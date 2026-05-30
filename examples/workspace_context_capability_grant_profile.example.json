@@ -1,0 +1,43 @@
+{
+  "profile_id": "workspace-context-capability-grant-profile-demo-0001",
+  "created_at": "2026-05-22T20:35:00Z",
+  "capability_family": "workspace.context",
+  "operation": "workspace.context.project",
+  "scope_refs": {
+    "workroom_ref": "workroom://workroom-demo-0001",
+    "professional_workroom_ref": "professional-workroom://workroom-demo-0001",
+    "context_graph_ref": "ctxgraph-demo-0001",
+    "runtime_binding_ref": "runtime-binding-demo-0001",
+    "projection_ref": "projection-demo-0001",
+    "share_grant_ref": null,
+    "recall_candidate_ref": null
+  },
+  "authority_refs": {
+    "agent_registry_binding_ref": "workspace-context-authority-binding-demo-0001",
+    "agent_refs": [
+      "agent-registry://agents/context-fabric-reviewer"
+    ],
+    "session_refs": [
+      "urn:srcos:session:context-fabric-demo-0001"
+    ],
+    "grant_refs": [
+      "agent-registry://grants/context-fabric-demo-0001"
+    ],
+    "revocation_refs": []
+  },
+  "platform_refs": {
+    "platform_record_ref": "platform://workspace-context-record-demo-0001",
+    "agentplane_evidence_ref": "agentplane://evidence/workroom-context-demo-0001",
+    "memory_mesh_packet_ref": null
+  },
+  "policy_refs": [
+    "policy-decision://policy-demo-ai-use/decision-0001"
+  ],
+  "evidence_refs": [
+    "agentplane://evidence/workroom-context-demo-0001",
+    "platform://workspace-context-record-demo-0001"
+  ],
+  "grant_required": true,
+  "ledger_required": true,
+  "notes": "Public synthetic workspace context grant profile example."
+}

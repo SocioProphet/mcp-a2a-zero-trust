@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sourceos.local/schemas/workspace_context/workspace_context_capability_grant_profile.schema.json",
+  "title": "WorkspaceContextCapabilityGrantProfile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["profile_id", "created_at", "capability_family", "operation", "scope_refs", "authority_refs", "policy_refs", "evidence_refs", "grant_required", "ledger_required"],
+  "properties": {
+    "profile_id": { "type": "string", "minLength": 1 },
+    "created_at": { "type": "string", "format": "date-time" },
+    "capability_family": { "const": "workspace.context" },
+    "operation": {
+      "type": "string",
+      "enum": [
+        "workspace.context.capture",
+        "workspace.context.project",
+        "workspace.context.share",
+        "workspace.context.recall.propose",
+        "workspace.context.recall.promote",
+        "workspace.context.continuation.record"
+      ]
+    },
+    "scope_refs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["workroom_ref", "context_graph_ref", "runtime_binding_ref"],
+      "properties": {
+        "workroom_ref": { "type": "string", "minLength": 1 },
+        "professional_workroom_ref": { "type": ["string", "null"] },
+        "context_graph_ref": { "type": "string", "minLength": 1 },
+        "runtime_binding_ref": { "type": "string", "minLength": 1 },
+        "projection_ref": { "type": ["string", "null"] },
+        "share_grant_ref": { "type": ["string", "null"] },
+        "recall_candidate_ref": { "type": ["string", "null"] }
+      }
+    },
+    "authority_refs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["agent_registry_binding_ref", "agent_refs", "grant_refs"],
+      "properties": {
+        "agent_registry_binding_ref": { "type": "string", "minLength": 1 },
+        "agent_refs": { "type": "array", "items": { "type": "string" } },
+        "session_refs": { "type": "array", "items": { "type": "string" } },
+        "grant_refs": { "type": "array", "items": { "type": "string" } },
+        "revocation_refs": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "platform_refs": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "platform_record_ref": { "type": ["string", "null"] },
+        "agentplane_evidence_ref": { "type": ["string", "null"] },
+        "memory_mesh_packet_ref": { "type": ["string", "null"] }
+      }
+    },
+    "policy_refs": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+    "evidence_refs": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+    "grant_required": { "type": "boolean" },
+    "ledger_required": { "type": "boolean" },
+    "notes": { "type": "string" }
+  }
+}
