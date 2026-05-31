@@ -1,0 +1,40 @@
+name: verify
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "Makefile"
+      - "requirements-dev.txt"
+      - "tools/**"
+      - "tests/**"
+      - "scripts/**"
+      - "schemas/**"
+      - "examples/**"
+      - "ledger/**"
+      - "mcp/**"
+      - ".github/workflows/verify.yml"
+  push:
+    branches: [main]
+    paths:
+      - "Makefile"
+      - "requirements-dev.txt"
+      - "tools/**"
+      - "tests/**"
+      - "scripts/**"
+      - "schemas/**"
+      - "examples/**"
+      - "ledger/**"
+      - "mcp/**"
+      - ".github/workflows/verify.yml"
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Run repository verification
+        run: make verify
