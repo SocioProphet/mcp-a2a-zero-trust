@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sourceos.local/schemas/governance/agent_class_grant.schema.json",
+  "title": "AgentClassGrant",
+  "description": "A capability-exception grant that lets a typed agent class exercise a capability it would not hold by default. Any grant that crosses a seam boundary MUST acknowledge that seam (seam_acknowledged, minItems 1) so no elevation is silent. agent_class values mirror the AgentPassport five-class model (sourceos-spec T0-1).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "grant_id",
+    "agent_bundle_id",
+    "agent_class",
+    "capability_granted",
+    "scope",
+    "granted_by",
+    "granted_at",
+    "seam_acknowledged"
+  ],
+  "properties": {
+    "grant_id": { "type": "string", "pattern": "^urn:srcos:agent-class-grant:[A-Za-z0-9._~-]+$" },
+    "agent_bundle_id": { "type": "string", "minLength": 1 },
+    "agent_class": {
+      "type": "string",
+      "enum": ["system_core", "intelligence_automation", "app_helper", "legacy_bridge", "third_party"]
+    },
+    "capability_granted": { "type": "string", "minLength": 1 },
+    "scope": { "type": "string", "minLength": 1 },
+    "granted_by": { "type": "string", "minLength": 1 },
+    "granted_at": { "type": "string", "format": "date-time" },
+    "expires": { "type": ["string", "null"], "format": "date-time" },
+    "rationale": { "type": "string" },
+    "seam_acknowledged": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^SEAM-[0-9]{3}$" },
+      "minItems": 1,
+      "description": "Seam IDs this grant crosses and explicitly acknowledges. Required, non-empty."
+    }
+  }
+}

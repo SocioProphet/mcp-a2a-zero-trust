@@ -1,0 +1,12 @@
+{
+  "grant_id": "urn:srcos:agent-class-grant:weatherd-critical-alert-001",
+  "agent_bundle_id": "com.apple.weatherd",
+  "agent_class": "intelligence_automation",
+  "capability_granted": "critical_alert_interrupt",
+  "scope": "severe-weather-alerts",
+  "granted_by": "urn:srcos:agent-machine:governance",
+  "granted_at": "2026-07-31T04:00:00Z",
+  "expires": null,
+  "rationale": "Severe-weather critical alerts are life-safety and may interrupt despite the intelligence_automation autonomous-action constraint.",
+  "seam_acknowledged": ["SEAM-009"]
+}
