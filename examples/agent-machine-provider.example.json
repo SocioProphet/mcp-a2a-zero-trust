@@ -1,0 +1,16 @@
+{
+  "provider_id": "urn:srcos:execution-provider:agent-machine",
+  "kind": "ExecutionProvider",
+  "provider_kind": "governed_execution",
+  "display_name": "Agent Machine (governed execution provider)",
+  "governed": true,
+  "trust_tier": 1,
+  "attestation_required": true,
+  "activation_prerequisites": [
+    "urn:srcos:agent-machine:attestation-decision:host-alpha-001",
+    "urn:srcos:agent-registry:grant:active"
+  ],
+  "agent_class_scope": ["system_core", "intelligence_automation", "app_helper", "legacy_bridge", "third_party"],
+  "capabilities_ref": "urn:srcos:capability-registry:agent-machine",
+  "default_deny": true
+}
