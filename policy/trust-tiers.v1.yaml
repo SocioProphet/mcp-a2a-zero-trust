@@ -1,0 +1,27 @@
+# Trust-tier mapping v1 — maps the AgentPassport five-class model to zero-trust
+# tiers. Additive: v0 (if introduced later) is left unchanged.
+# References the AgentPassport namespace: urn:srcos:agent-passport:*
+version: 1
+references:
+  agent_passport_namespace: "urn:srcos:agent-passport:"
+agent_class_tier_mapping:
+  system_core:
+    tier: 1
+    note: "pre-authorized system-center daemons; highest privilege"
+    requires_attestation: true
+  intelligence_automation:
+    tier: 2
+    note: "high privilege, triple-constrained output"
+  app_helper:
+    tier: 3
+    note: "first-party application background daemons; standard user auth"
+  legacy_bridge:
+    tier: 3
+    note: "first-party legacy/modern bridge; prefer the modern path"
+  third_party:
+    tier: 4
+    note: "unsigned external applications; per-session auth"
+    forbidden:
+      - suppress_user_authorization_prompt
+      - system_bundle
+      - persistent_system_banner
