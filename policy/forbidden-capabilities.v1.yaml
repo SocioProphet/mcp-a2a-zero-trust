@@ -1,0 +1,21 @@
+# Forbidden-capability rules v1 — which capabilities are denied to which agent
+# classes, and the seam each rule closes. Additive: v0 unchanged.
+version: 1
+forbidden_capabilities:
+  - capability: dnd_intelligent_management
+    forbidden_for: [intelligence_automation, app_helper, legacy_bridge, third_party]
+    seam: SEAM-009
+  - capability: summarize_previews
+    forbidden_for: [intelligence_automation]
+    seam: SEAM-009
+  - capability: autonomous_action
+    forbidden_for: [intelligence_automation]
+    seam: SEAM-009
+  - capability: suppress_user_authorization_prompt
+    forbidden_for: [third_party, app_helper, legacy_bridge]
+    seam: SEAM-002
+  - capability: sensitive_output_to_sampled_surface
+    forbidden_for: [all]
+    condition: "render_surface.session_sample_rate==100 AND output.sensitivity==high"
+    seam: SEAM-013
+    gate_type: advisory
