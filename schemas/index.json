@@ -1,5 +1,5 @@
 {
-  "count": 15,
+  "count": 16,
   "items": [
     {
       "$id": "https://sourceos.local/schemas/canonical/attestation_bundle.schema.json",
@@ -30,6 +30,12 @@
       "path": "schemas/governance/agent_class_grant.schema.json",
       "sha256": "sha256:1d1f3012354b09e7412cdde8a736fc41248828a128296650b4b38b762dea54ec",
       "title": "AgentClassGrant"
+    },
+    {
+      "$id": "https://sourceos.local/schemas/governance/execution_provider.schema.json",
+      "path": "schemas/governance/execution_provider.schema.json",
+      "sha256": "sha256:f7976fde715b60b3cc16539b1482b6581129b08fa39c5a1ca815eaf9980cd683",
+      "title": "ExecutionProvider"
     },
     {
       "$id": "https://socioprophet.dev/schema/governance/runtime_evidence_refs.schema.json",

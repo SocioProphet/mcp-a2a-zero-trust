@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sourceos.local/schemas/governance/execution_provider.schema.json",
+  "title": "ExecutionProvider",
+  "description": "A governed execution provider declaration. Binds a provider (e.g. agent-machine) to its governance posture: trust tier, agent-class scope, and the activation prerequisites that must be satisfied before it may run. A provider MUST list at least one AttestationDecision URN (urn:srcos:agent-machine:attestation-decision:*) as an activation prerequisite — attestation is a precondition for activation (agent-machine T2-1).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "provider_id",
+    "kind",
+    "provider_kind",
+    "display_name",
+    "governed",
+    "trust_tier",
+    "attestation_required",
+    "activation_prerequisites",
+    "default_deny"
+  ],
+  "properties": {
+    "provider_id": { "type": "string", "pattern": "^urn:srcos:execution-provider:[a-z0-9][a-z0-9._:-]*$" },
+    "kind": { "type": "string", "const": "ExecutionProvider" },
+    "provider_kind": { "type": "string", "enum": ["governed_execution", "inference", "build", "storage", "egress"] },
+    "display_name": { "type": "string", "minLength": 1 },
+    "governed": { "type": "boolean" },
+    "trust_tier": { "type": "integer", "minimum": 1, "maximum": 4 },
+    "attestation_required": { "type": "boolean" },
+    "activation_prerequisites": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 },
+      "contains": { "type": "string", "pattern": "^urn:srcos:agent-machine:attestation-decision:[a-z0-9][a-z0-9-]*$" },
+      "description": "URN references that must be satisfied before activation. MUST contain at least one AttestationDecision URN."
+    },
+    "agent_class_scope": {
+      "type": "array",
+      "items": { "type": "string", "enum": ["system_core", "intelligence_automation", "app_helper", "legacy_bridge", "third_party"] },
+      "description": "Which agent classes this provider may execute (AgentPassport five-class model)."
+    },
+    "capabilities_ref": { "type": "string" },
+    "default_deny": { "type": "boolean" }
+  }
+}

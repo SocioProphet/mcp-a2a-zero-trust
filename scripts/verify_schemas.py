@@ -77,6 +77,7 @@ def main() -> int:
         "examples/interop_diagnostics.example.json": "schemas/interop/interop_diagnostics.schema.json",
         "examples/workspace_context_capability_grant_profile.example.json": "schemas/workspace_context/workspace_context_capability_grant_profile.schema.json",
         "examples/agent_class_grant.example.json": "schemas/governance/agent_class_grant.schema.json",
+        "examples/agent-machine-provider.example.json": "schemas/governance/execution_provider.schema.json",
     }
 
     for ex_path, schema_path in schema_map.items():
