@@ -1,5 +1,5 @@
 {
-  "count": 13,
+  "count": 15,
   "items": [
     {
       "$id": "https://sourceos.local/schemas/canonical/attestation_bundle.schema.json",
@@ -24,6 +24,12 @@
       "path": "schemas/canonical/quorum_proof.schema.json",
       "sha256": "sha256:d3ceec20d3268c30c1f0fda17f0981654a850ad39073ac5b1ff4aff62a0b2bb2",
       "title": "QuorumProof"
+    },
+    {
+      "$id": "https://sourceos.local/schemas/governance/agent_class_grant.schema.json",
+      "path": "schemas/governance/agent_class_grant.schema.json",
+      "sha256": "sha256:1d1f3012354b09e7412cdde8a736fc41248828a128296650b4b38b762dea54ec",
+      "title": "AgentClassGrant"
     },
     {
       "$id": "https://socioprophet.dev/schema/governance/runtime_evidence_refs.schema.json",
@@ -66,6 +72,12 @@
       "path": "schemas/interop/trust_boundary.schema.json",
       "sha256": "sha256:7e1d89397f96c1c6449fa24398315a88fb278829d8d18a385a87712009edcc97",
       "title": "TrustBoundary"
+    },
+    {
+      "$id": "https://sourceos.local/schemas/workspace_context/workspace_context_capability_grant_profile.schema.json",
+      "path": "schemas/workspace_context/workspace_context_capability_grant_profile.schema.json",
+      "sha256": "sha256:da62755e3f680b6b22f427e6f2172d868c4027283fa288608461a8564b119d46",
+      "title": "WorkspaceContextCapabilityGrantProfile"
     },
     {
       "$id": "https://sourceos.local/schemas/mcp/capability_registry.schema.json",
