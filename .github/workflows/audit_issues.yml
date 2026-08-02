@@ -2,7 +2,9 @@ name: audit-issues
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 9 * * *"   # daily 09:00 UTC
+    - cron: "0 9 * * *"   # daily 09:00 UTC (safety-net sweep, kept alongside the immediate trigger below)
+  issues:
+    types: [opened, edited]   # catch non-compliant issues immediately, not just on the next daily sweep
 permissions:
   contents: read
 
@@ -27,6 +29,11 @@ jobs:
               return {hasDoD, hasAcc};
             }
 
+            // Full-repo scan on every trigger (schedule, workflow_dispatch, and now issues
+            // opened/edited) is intentional: at this repo's issue volume a complete re-scan is
+            // cheap and it keeps the check simple/correct (no per-event-issue special-casing,
+            // no risk of missing a stale issue that regressed via some other path). Revisit only
+            // if issue count grows enough to make this slow.
             const issues = await github.paginate(
               github.rest.issues.listForRepo,
               { owner, repo, state: "all", per_page: 100 }
