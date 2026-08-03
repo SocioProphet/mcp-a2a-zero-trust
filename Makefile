@@ -1,4 +1,4 @@
-.PHONY: deps verify verify-carriers verify-policy audit-issues gen-index clean
+.PHONY: deps verify verify-carriers verify-ledger verify-policy audit-issues gen-index clean
 # venv-based deps (avoids PEP 668 external management issues on macOS)
 deps: .venv/.deps.stamp
 .venv/.deps.stamp:
@@ -19,7 +19,14 @@ verify-policy: deps
 	./scripts/guard_repo_root.sh
 	.venv/bin/python ./scripts/verify_policy.py
 
-verify: deps gen-index verify-carriers verify-policy
+# T7-17: native hash-chained LedgerEvent emission bound to the model-plane receipt spine.
+verify-ledger: deps
+	./scripts/guard_repo_root.sh
+	.venv/bin/python ./tools/ledger_receipt.py --selftest
+	.venv/bin/python ./tools/ledger_receipt.py --verify examples/ledger_chain.example.jsonl
+	.venv/bin/python -m pytest tests/test_ledger_receipt.py
+
+verify: deps gen-index verify-carriers verify-ledger verify-policy
 	./scripts/guard_repo_root.sh
 	.venv/bin/python ./scripts/verify_schemas.py
 	.venv/bin/python ./scripts/verify_policy.py
